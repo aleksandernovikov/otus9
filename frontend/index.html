@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webpack forms</title>
+</head>
+<body>
+<form action="/api/register" method="post" id="register_form">
+    <p>
+        <label for="register_username">Username</label>
+        <input type="text" name="username" id="register_username">
+    </p>
+
+    <p>
+        <label for="register_email">Email</label>
+        <input type="email" name="email" id="register_email">
+    </p>
+    <p>
+        <label for="register_password">Password</label>
+        <input type="password" name="password" id="register_password">
+    </p>
+
+    <input type="submit" value="Register">
+</form>
+</body>
+<script src="src/index.js"></script>
+</html>
