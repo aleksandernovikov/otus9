@@ -13,12 +13,15 @@ User = get_user_model()
 def register_user(request):
     serialized_user = UserCreateSerializer(data=request.data)
 
-    if serialized_user.is_valid():
+    if serialized_user.is_valid(raise_exception=True):
         instance = serialized_user.save()
         if instance:
-            return Response(serialized_user.data, status=status.HTTP_201_CREATED)
-    else:
-        return Response(serialized_user._errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_201_CREATED)
+
+    return Response(
+        serialized_user._errors,
+        status=status.HTTP_400_BAD_REQUEST
+    )
 
 
 @api_view(['POST'])
