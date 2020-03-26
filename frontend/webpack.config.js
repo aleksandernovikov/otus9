@@ -7,21 +7,31 @@ module.exports = {
     entry: './src/index',
 
     output: {
-        path: path.resolve('../static/'),
-        filename: "[name]-[hash].js"
+        path: path.resolve('./dst/'),
+        filename: 'bundle.min.js',
+        // path: path.resolve('../static/'),
+        // filename: "[name]-[hash].js"
+
     },
 
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ["@babel/preset-env"]
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ["@babel/preset-env"]
+                    }
                 }
-            }
-        }]
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+
+        ]
     },
 
     resolve: {

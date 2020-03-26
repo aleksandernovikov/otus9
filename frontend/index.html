@@ -2,26 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Webpack forms</title>
+    <title>Register & Login forms</title>
 </head>
 <body>
-<form action="/api/register" method="post" id="register_form">
-    <p>
-        <label for="register_username">Username</label>
-        <input type="text" name="username" id="register_username">
-    </p>
+<div class="register-form-place">
+    <ul>
+        <li>
+            <a>Регистрация</a>
+        </li>
+        <li>
+            <a>Вход</a>
+        </li>
+    </ul>
+    <div class="registration-block">
+        <h3>Форма регистрации</h3>
+        <form action="/api/register" method="post" id="register-form">
+            <p>
+                <label for="register-username">Имя пользователя</label>
+                <input type="text" name="username" id="register-username"> <span class="check-result"></span>
+            </p>
 
-    <p>
-        <label for="register_email">Email</label>
-        <input type="email" name="email" id="register_email">
-    </p>
-    <p>
-        <label for="register_password">Password</label>
-        <input type="password" name="password" id="register_password">
-    </p>
+            <p>
+                <label for="register-email">Email</label>
+                <input type="email" name="email" id="register-email">
+            </p>
+            <p>
+                <label for="register-password">Пароль</label>
+                <input type="password" name="password" id="register-password">
+            </p>
 
-    <input type="submit" value="Register" name="btn">
-</form>
+            <input type="submit" value="Register" name="btn">
+        </form>
+    </div>
+    <div class="login-block hide">
+        <h3>Форма входа</h3>
+        <form action="/api/login" method="post" id="login-form">
+            <p>
+                <label for="username">Имя пользователя</label>
+                <input type="text" name="username" id="username">
+            </p>
+
+
+            <p>
+                <label for="password">Пароль</label>
+                <input type="password" name="password" id="password">
+            </p>
+
+            <input type="submit" value="Login" name="btn">
+        </form>
+    </div>
+
+</div>
 </body>
-<script src="src/index.js"></script>
+<script src="//localhost:3001/bundle.min.js"></script>
 </html>

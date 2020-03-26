@@ -9,6 +9,16 @@ from api.serializers import UserCreateSerializer
 User = get_user_model()
 
 
+@api_view(['GET'])
+def check_username(request):
+    username = request.query_params.get('username')
+    user_exists = User.objects.filter(username=username).exists()
+
+    if user_exists:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(status=status.HTTP_200_OK)
+
+
 @api_view(['POST'])
 def register_user(request):
     serialized_user = UserCreateSerializer(data=request.data)
