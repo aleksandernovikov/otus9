@@ -3,7 +3,7 @@ import './style.css'
 
 const API_URL = '/api/';
 
-function mark_field_validity(selector, validity) {
+function markFieldValidity(selector, validity) {
     let el = document.querySelector(selector)
     if (validity === true) {
         el.innerHTML = '<span title="Можно использовать">✅</span>'
@@ -12,7 +12,7 @@ function mark_field_validity(selector, validity) {
     }
 }
 
-const is_valid_username = username => {
+const isValidUsername = username => {
     if (username.length >= 3) {
         axios.get(`${API_URL}check-username`, {
             params: {
@@ -20,38 +20,34 @@ const is_valid_username = username => {
             }
         })
             .then(() => {
-                mark_field_validity('.check-result', true)
+                markFieldValidity('.check-result', true)
             })
             .catch(() => {
-                mark_field_validity('.check-result', false)
+                markFieldValidity('.check-result', false)
             })
     } else {
-        mark_field_validity('.check-result', false)
+        markFieldValidity('.check-result', false)
     }
 };
 
-let username_input = document.querySelector('#register-username');
-username_input.addEventListener('input', e => {
-    let username = username_input.value
+let usernameInput = document.getElementById('register-username');
+usernameInput.addEventListener('input', e => {
+    let username = usernameInput.value
     let timer
 
-    if (is_valid_username(username)) {
+    if (isValidUsername(username)) {
         clearTimeout(timer)
-        timer = setTimeout(() => is_valid_username(username), 500)
+        timer = setTimeout(() => isValidUsername(username), 500)
     }
 });
 
-let register_form = document.querySelector('#register-form')
-register_form.addEventListener('submit', e => {
+let registerForm = document.getElementById('register-form')
+registerForm.addEventListener('submit', e => {
     e.preventDefault()
 
-    let inputs = document.querySelectorAll('#register-form input')
-    let formObj = {}
-    inputs.forEach((item, i, arr) => {
-        formObj[item.name] = item.value
-    });
+    let registerFormData = new FormData(registerForm);
 
-    axios.post('/api/register', formObj)
+    axios.post(`${API_URL}register`, registerFormData)
         .then(response => {
             console.log(response.data)
         })
