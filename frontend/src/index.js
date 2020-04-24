@@ -12,7 +12,7 @@ function markFieldValidity(selector, validity) {
     }
 }
 
-const isValidUsername = username => {
+const isValidUsername = (username) => {
     if (username.length >= 3) {
         axios.get(`${API_URL}check-username`, {
             params: {
@@ -31,17 +31,14 @@ const isValidUsername = username => {
 };
 
 let usernameInput = document.getElementById('register-username');
-usernameInput.addEventListener('input', e => {
-    let username = usernameInput.value
-    let timer
 
-    if (isValidUsername(username)) {
-        clearTimeout(timer)
-        timer = setTimeout(() => isValidUsername(username), 500)
-    }
+usernameInput.addEventListener('change', e => {
+    isValidUsername(usernameInput.value)
 });
 
+
 let registerForm = document.getElementById('register-form')
+
 registerForm.addEventListener('submit', e => {
     e.preventDefault()
 
@@ -49,7 +46,41 @@ registerForm.addEventListener('submit', e => {
 
     axios.post(`${API_URL}register`, registerFormData)
         .then(response => {
-            console.log(response.data)
+            alert('Успешная регистрация, теперь можно авторизоваться.')
+            showLoginForm()
         })
         .catch(error => console.log(error))
 });
+
+let loginForm = document.getElementById('login-form')
+
+loginForm.addEventListener('submit', e => {
+    e.preventDefault()
+    let loginFormData = new FormData(loginForm)
+    axios.post(`${API_URL}login`, loginFormData)
+        .then(response => {
+            alert('Успешная авторизация')
+        })
+        .catch(error => alert('Неверные данные, попробуйте еще раз.'))
+})
+
+
+
+// наверняка неправильно и некрасиво, но пока так
+function showRegistrationForm() {
+    document.getElementById('registration-block').classList = ['show']
+    document.getElementById('login-block').classList = ['hide']
+}
+
+function showLoginForm() {
+    document.getElementById('registration-block').classList = ['hide']
+    document.getElementById('login-block').classList = ['show']
+}
+
+document.getElementById('register-form-link').addEventListener('click', e => {
+    showRegistrationForm()
+})
+
+document.getElementById('login-form-link').addEventListener('click', e => {
+    showLoginForm()
+})

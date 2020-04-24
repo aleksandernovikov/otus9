@@ -5,16 +5,17 @@
     <title>Register & Login forms</title>
 </head>
 <body>
-<div class="register-form-place">
+<div id="register-form-place">
     <ul>
         <li>
-            <a>Регистрация</a>
+            <a id="register-form-link">Регистрация</a>
         </li>
         <li>
-            <a>Вход</a>
+            <a id="login-form-link">Вход</a>
         </li>
     </ul>
-    <div class="registration-block">
+
+    <div id="registration-block" class="show">
         <h3>Форма регистрации</h3>
         <form action="/api/register" method="post" id="register-form">
             <p>
@@ -31,18 +32,17 @@
                 <input type="password" name="password" id="register-password">
             </p>
 
-            <input type="submit" value="Register" name="btn">
+            <button>Register</button>
+
         </form>
     </div>
-    <div class="login-block hide">
+    <div id="login-block" class="hide">
         <h3>Форма входа</h3>
         <form action="/api/login" method="post" id="login-form">
             <p>
                 <label for="username">Имя пользователя</label>
                 <input type="text" name="username" id="username">
             </p>
-
-
             <p>
                 <label for="password">Пароль</label>
                 <input type="password" name="password" id="password">
