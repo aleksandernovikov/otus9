@@ -17,7 +17,7 @@
     "css-loader": "^3.4.2",
     "webpack": "^4.42.1",
     "webpack-bundle-tracker": "^0.4.3",
-    "webpack-cli": "^3.3.11",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.10.3",
     "axios": "^0.19.2",
     "style-loader": "^1.1.3"
